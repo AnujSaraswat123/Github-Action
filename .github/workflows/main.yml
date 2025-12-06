@@ -1,0 +1,27 @@
+name: Day-3 Practice
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  context-demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Step1 - Print repo info
+        run: |
+          echo "Repo: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Actor: ${{ github.actor }}"
+
+      - name: Step2 - Set an output
+        id: example
+        run: echo "message=Hello from step 2" >> $GITHUB_OUTPUT
+
+      - name: Step3 - Use the output
+        run: echo "Step2 Output: ${{ steps.example.outputs.message }}"
+
+      - name: Step4 - Use run number
+        run: echo "Run number is ${{ github.run_number }}"
