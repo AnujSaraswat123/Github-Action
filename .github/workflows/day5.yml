@@ -1,0 +1,19 @@
+name: Day-5 Matrix Example
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  matrix-demo:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14, 16, 18]
+
+    steps:
+      - name: Print version
+        run: |
+          echo "Running job for Node version: ${{ matrix.node-version }}"
