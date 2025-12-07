@@ -1,0 +1,39 @@
+name: Day 7 
+
+on:
+  push:
+    branches: [main]
+    
+jobs:
+  cache-and-artifacts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create a samplefile
+        run: |
+          echo "This is sample artifact file" > sample.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-file
+          path: sample-txt
+          
+      - name: Cache examle
+        uses: actions/cache@v4
+        with:
+          path: demo_cache
+          key: ${{ runner.os }}-demo-${{ github.run_id }}   
+          
+      - name: Save something into cache path
+        run: |
+          mkdir -p demo_cache
+          echo "cache data" > demo_cache/data.txt   
+
+        
+
+
+
