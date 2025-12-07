@@ -1,0 +1,19 @@
+name: Day-4 Secrets Practice
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  secret-demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print safe message
+        run: echo "Secrets test started"
+
+      - name: Use a secret safely
+        run: |
+          echo "Logging in..."
+          echo "${{ secrets.DUMMY_TOKEN }}" > /dev/null
